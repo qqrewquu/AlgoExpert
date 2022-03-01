@@ -1,4 +1,6 @@
-明天再做一遍这个题
+思路：检查target - curentNum 的差值，如果差值不在hashmap，把当前currentNum和idx储存到里面。如果差值在hashmap里，那么差值 + num = target，也就是说找到了结果。
+最后返回差值 和 num 的idxs
+
 
 ```python
 class Solution:

@@ -1,4 +1,4 @@
-明天再做一次这个题
+周四再做一次这个题
 
 ```python
 class Solution:
