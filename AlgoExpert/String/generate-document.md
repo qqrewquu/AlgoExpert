@@ -1,34 +1,48 @@
-At first, did not come up with a correct solution. 
+After look at hint, then know need to use Hash map. Then, came up with code with solution(method 1 below)
 
-After glancing the solution, achieve optimal solution 
+But, below method 2 is preferred since its provide more clear solution 
 
 ```python
-# O(m+n) Time; where m & n are lengths of characters and documents
-# O(c) Space; where c is number of unique characters in the characters string
+
+# O(m+n) Time: m = len(characters), n = len(document)
+
+# O(c) Space: c = len(unique characters) ** it could be O(1) since there are only 26 alpha letter
 
 def generateDocument(characters, document):
-	
-	# Variable to store the number of chars in characters
-	charCounts = {}
-	
-	# store the number of chars in characters
-	for cha in characters:
-		if cha not in charCounts:
-			charCounts[cha] = 1
+	charsMap = {}
+	for c in characters:
+		if c not in charsMap:
+			charsMap[c] = 1
 		else:
-			charCounts[cha] += 1
+			charsMap[c] += 1
 			
-	
-	# check target char is in the characters 
-	for cha in document:
-		# if target char not in characters or characters char has smaller frequency than target char
-		# return false 
-		if cha not in charCounts or charCounts[cha] == 0:
+	# (my method) method 1: if document's character in the characters.
+	# delete current character frequency, and if its frequency < 0, which means,
+	# the char in document does not in character. Return False
+	# otherwise, Return True
+	for c in document:
+		if c not in charsMap:
 			return False 
 		
-		# if target char in characters, then characters char frequency minus 1
-		charCounts[cha] -=1 
+		charsMap[c] -= 1
+		
+		if charsMap[c] < 0: 
+			return False 
 	
-	# if code goes to here, then true
+	# (preferred method) method 2: if document's char not in character OR char exist but its frequency == 0,
+	# Return False 
+		
+	for c in document:
+		if c not in charsMap or charsMap[c] == 0:
+			return False 
+		
+		charsMap[c] -= 1
+		
 	return True
+		
+
+	
+	
+	
+	
 ```

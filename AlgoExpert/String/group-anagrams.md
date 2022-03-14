@@ -1,29 +1,23 @@
-一开始没想到用hashmap，一直再nested loop遍历array。但是一直有点bug，不能通过所有的tests
+第一次：一开始没想到用hashmap，一直再nested loop遍历array。但是一直有点bug，不能通过所有的tests
+
+第二次：看了hint后想到用hashmap，但是没有想清楚如何排列sorted word。看了答案后才明白。
 
 ```python
-# O(w*n*log(n)) time; w is number of words, n is length of longest word, log(n) is sort word
-# O(w*n) space
+# O(w*n*log(n)) Time | O(w*n); w = number of words, n = len(word)
+
+
+
 def groupAnagrams(words):
-	# variable to store all words frequency
-	wordsFrequency = {}
-	
-	# loop through the words 
+	wordsCount = {}
 	for word in words:
-		# sorted words will lead to list, so convert it back to string
-		# now have sorted string
-		sortedword = "".join(sorted(word))
-		
-		# if sorted string not in hashmap, add unsorted string as a list 
-		if sortedword not in wordsFrequency:
-			wordsFrequency[sortedword] = [word]	
-			
-		# if sorted string in hashmap, add unsorted string in the list
+		sortedWord = ''.join(sorted(word))
+		if sortedWord not in wordsCount:
+			wordsCount[sortedWord] = [word]
 		else:
-			wordsFrequency[sortedword].append(word)
-		
-	# return all the word from hashmap value
+			wordsCount[sortedWord].append(word)
 			
-	return list((wordsFrequency.values()))
+	return list(wordsCount.values())
+
 			
 ```
 

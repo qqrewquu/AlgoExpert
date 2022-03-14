@@ -1,39 +1,39 @@
-First time did not did not come up with when input is 'space' string.
+Reset variable 'count' to 1 in the for loop(which is wrong). And if I did not compile the code, I would not know need to handle the case that need to handle 
+the last two characters. Need to redo this sometimes
 
-Also, I thought about the two cases below and implemented in the wrong way,
-so failed to pass all the tests
 
 ```python
 # O(n) Time
 # O(n) Space
 def runLengthEncoding(string):
-	counter = 1
-	result = [] 
-	# if string only has 'space', then return 1 + space
-	if string == " ": return str(counter) + str(" ")
+	resultList = []
+	count = 1
 	
-	for i in range(len(string)-1): 
+	if string == " ":
+		return str(count) + " "
+	
+	for i in range(0,len(string)-1):
 		currentChar = string[i]
 		nextChar = string[i+1]
 		
-		# if encouter same char for 9 time OR the currentchar != nextChar
-		if counter == 9 or currentChar != nextChar:
-			result.append(str(counter) + str(currentChar))
-			# counter = 0
-			counter = 0
-
-		# Two cases need to handle in the last second position
-		
-		# if last second == last one
-		if i == len(string)-2 and currentChar == nextChar:
-			result.append(str(counter+1) + str(currentChar))
-		
-		# if last second != last one
-		if i == len(string)-2 and currentChar != nextChar:
-			result.append(str(counter+1) + str(nextChar))
-		
-		counter += 1
-		
+		if currentChar != nextChar:
+			resultList.append(str(count) + currentChar) 
+			count = 0
 	
-	return ''.join(result)
+		if count == 9:
+			resultList.append(str(count) + currentChar)
+			count = 0
+			
+		# handle last two character since the index would stop at the last second position of string
+		# case 1) last second != last one 
+		if i == len(string) - 2 and currentChar == nextChar: 
+			resultList.append(str(count+1) + currentChar)
+			
+		# case 2) last second == last one
+		if i == len(string) - 2 and currentChar != nextChar: 
+			resultList.append(str(count+1) + nextChar)
+		
+		count += 1
+		
+	return ''.join(resultList)
 ```

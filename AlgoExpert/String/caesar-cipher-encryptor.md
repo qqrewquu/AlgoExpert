@@ -1,23 +1,20 @@
 ```python
 # O(n) Time
 # O(n) Space
+
 def caesarCipherEncryptor(string, key):
-	if key == 0: 
-		return string
-	stringList = list('abcdefghijklmnopqrstuvwxyz')
+	alphaLetter = 'abcdefghijklmnopqrstuvwxyz'
 	resultList = []
 	
 	for cha in string:
-		charPosition = stringList.index(cha)
-		newCharPosition = charPosition + key
+		newPosition = alphaLetter.index(cha) + key
+		newPosition = newPosition % 26
+		newChar = alphaLetter[newPosition]
+		resultList.append(newChar)
 		
-		if newCharPosition >= 26:
-			newCharPosition %= 26
+	return ''.join(resultList) 
 		
-	    resultList.append(stringList[newCharPosition])
-		
-		
-	return ''.join(resultList)
+	
 	
 	
 ```
