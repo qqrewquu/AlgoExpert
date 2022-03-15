@@ -1,3 +1,8 @@
+第二次做：没什么思路。看了答案会写。需要重新做
+
+
+第一次做：
+
 最开始的想法：一个for loop 遍历所有word，找到所有的character的frequency。然后再从中找
 再找max frequency for each character。但发现这样的想法不能实现
 
@@ -6,64 +11,76 @@
 当for loop结束后，就会得到一个hash map储存着所有characters with max number of frequency across all the words。然后再转变成需要的结果
 
 ```python
-# n = length of words list
-# w = length of longest word
-# c = number of unique characters across all the words
 '''
-O(n*w) Time 
+w = number of words
+c = length of longest word
+u = number of unique characters
 
-Space:
+O(w*c) Time 
 
-O(c) is lower bound. For example, some unique character only occur constant time in most of words
-uut the output array of characters might take up more space if some unique characters appear 
-multiple times in a single word. For example, we might have a hash table {"a": 3"} 
-with one character but an output array ["a", "a", "a"] with three characters.
 
-O(c*w) is upper bound. For example, every single characters acorss all the words are unique
+O(u) Space Lower bound
+
+O(u*c) Space Upper bound: this because when we converting the hashmap to list, 
+all the unique characters may appear 'c' times which is the length of longest word
+
 
 '''
 def minimumCharactersForWords(words):
-	maxCharFrequency = {}
-	# loop through each word 
+	maxCharCounts = {}
+	'''O(w*c)'''
+	for word in words: #'''O(w)'''
+		# find all the chars frequency 
+		charCounts = allCharFreq(word) # '''O(c)'''
+		# update maximum chars frequency across all the words
+		maxCharCounts = updateMaxCharFreq(maxCharCounts,charCounts) #'''O(c)'''
 	
-	# O(n*w)
-	for word in words: #O(n)
-		# count each char's frequency for current word
-		characterFrequencies = countCharacterFRequencies(word) #O(w)
-		# update the char's max frequencies 
-		updateMaxiumFrequencies(characterFrequencies,maxCharFrequency) #O(w)
-	# convery the hashmap that contains all chars with max frequency
-	# to the list as requested
-	return makeCharFreqToArray(maxCharFrequency) # O(n*w)
-
-
-def makeCharFreqToArray(maxCharFrequency):
+	
+    return convertDictToList(maxCharCounts)
+	
+	
+def convertDictToList(maxCharCounts):
 	resultList = []
-	for cha in maxCharFrequency:
-		frequency = maxCharFrequency[cha]
-		for _ in range(frequency):
-			resultList.append(cha)
-	return resultList 
+	for c in maxCharCounts:
+		freq = maxCharCounts[c]
+		for _ in range(freq):
+			resultList.append(c)
 
-def updateMaxiumFrequencies(charFrequency,maxCharFrequency)
-	for cha in charFrequency:
-		frequency = charFrequency[cha]
+	return resultList
 		
-		if cha not in maxCharFrequency:
-			maxCharFrequency[cha] = frequency
+def updateMaxCharFreq(maxCharCounts,charCounts):
+	for c in charCounts:
+		freq = charCounts[c]
+		
+		if c in maxCharCounts:
+			maxCharCounts[c] = max(freq,maxCharCounts[c])
 		else:
-			maxCharFrequency[cha] = max(maxCharFrequency[cha],frequency)
+			maxCharCounts[c] = freq
+			
+	return maxCharCounts
 	
-	return maxCharFrequency
+def allCharFreq(word):
+	charCounts = {}
+	for c in word:
+		if c not in charCounts:
+			charCounts[c] = 1
+		else:
+			charCounts[c] += 1
 	
-def countCharacterFRequencies(word):
-	charFrequency = {}
+	return charCounts
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-	for cha in word:
-		if cha not in charFrequency:
-			charFrequency[cha] = 1
-		else:
-			charFrequency[cha] += 1
-		
-	return charFrequency
 ```

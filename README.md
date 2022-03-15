@@ -12,8 +12,8 @@
 | 5 |  Easy |[First Non-repeating Characters](https://www.algoexpert.io/questions/First%20Non-Repeating%20Character)                                                  | [py](AlgoExpert/String/first-none-repeating-character.md)                     |       Hashmap to count char's frequency              | :heavy_check_mark:                            |
 | 6  | Medium| [Longest Palindromic](https://www.algoexpert.io/questions/Longest%20Palindromic%20Substring)                              | [py](AlgoExpert/String/longest-palindromic-substring.md)                     | Two pointers | :heavy_exclamation_mark:  :small_red_triangle:                       |
 | 7 | Medium| [Group Anagrams](https://www.algoexpert.io/questions/Group%20Anagrams)                                                            | [py](AlgoExpert/String/group-anagrams.md)                        |    Hashmap                 | :small_red_triangle:               |
-| 9  | Medium| [Reverse Word In String](https://www.algoexpert.io/questions/Reverse%20Words%20In%20String)                                        | [py](AlgoExpert/String/reverse-word-in-string.md) |               | :o:                             |
-| 10 | Medium | [Minimum Characters For Words](https://www.algoexpert.io/questions/Minimum%20Characters%20For%20Words)          | [py](AlgoExpert/String/minimum-characters-for-words.md)           |              |:o:   |
+| 9  | Medium| [Reverse Word In String](https://www.algoexpert.io/questions/Reverse%20Words%20In%20String)                                        | [py](AlgoExpert/String/reverse-word-in-string.md) |  pointer and handle white space             | :small_red_triangle:                            |
+| 10 | Medium | [Minimum Characters For Words](https://www.algoexpert.io/questions/Minimum%20Characters%20For%20Words)          | [py](AlgoExpert/String/minimum-characters-for-words.md)           |    update Hashmap at a time in the loop          |:small_red_triangle:     |
 
 
 

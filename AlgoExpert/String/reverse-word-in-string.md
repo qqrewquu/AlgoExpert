@@ -1,47 +1,61 @@
-是最优解，但是compile了好几次才通过所有的tests。而且代码看起来有点乱
+第二次做不是最优解，看了video explanation才明白。需要下次重新再做一次
 
 ```python
-# O(n) time; n = length of string
-# O(n) space
+# O(n) time | O(n) Space
+
 def reverseWordsInString(string):
-	if string == " ": return " "
-	elif string == "": return ""
-	elif len(string) == 1: return string
-
-	i = -1
-	# final result list
 	resultList = []
-	# temp list to store the each word
-	tempList = []
-	while abs(i) < len(string):
-		currentChar = string[i]
-		nextChar = string[i-1]
-		# add current char and add word(stored in 'tempList') to 
-		# results list when next character is space, 
-		if nextChar == " ": 
-			tempList.insert(0,currentChar)
-			# convert list of char to a word string
-			resultList.append(''.join(tempList))
-			# empty the list for next word
-			tempList = []
-			
-		# when in last second char, add current and next(which is last) char into
-		# templist, and add templist to result list
-		elif abs(i) == len(string)-1:
-			tempList.insert(0,currentChar)
-			tempList.insert(0,nextChar)
-			resultList.append(''.join(tempList))
-			
-		# add current char to tempList
-		else:
-			tempList.insert(0,currentChar)
-		i-=1
+	ptr = 0
+	for i,cha in enumerate(string):
+		# if current char is space, then add all previous characters
+		if cha == " ":
+			resultList.append(string[ptr:i])
+			# move the pointer to current idx(which is space)
+			ptr = i
 		
-	# add the space at the end for first word
-	resultList[0] = resultList[0] + " "
-	# remove the space at the end for last word
-	resultList[-1] = resultList[-1].replace(" ","")
-	# convert list of word to a sentence string
-	return "".join(resultList)
+		# if ptr' char is space, add space, and move the ptr to current idx(i)
+		elif string[ptr] == " ":
+			resultList.append(" ")
+			ptr = i
+			
+			
+	# after for loop, the last string is not added, then add the last string
+	# using 'ptr' which stays at the first char of the last string
+	resultList.append(string[ptr:])
+	
+	# reverse the list
+	reverseList(resultList)
+	
+	return (''.join(resultList))
 
+
+# helper function
+def reverseList(resultList):
+	start = 0
+	end = len(resultList)-1
+	
+	while start <= end:
+		resultList[start],resultList[end] = resultList[end],resultList[start]
+		
+		start+=1
+		end-=1
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+			
 ```
