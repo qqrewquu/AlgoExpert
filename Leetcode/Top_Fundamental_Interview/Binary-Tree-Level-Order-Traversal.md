@@ -11,11 +11,10 @@
 
 
 # O(n) Time | O(n) Space
-# iterative solution: 
 from collections import deque
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-
+        
         result = [] 
         if not root:
             return result        
@@ -23,15 +22,18 @@ class Solution:
         queue = deque([root,])
         level = 0
         while queue: 
+            # adding an empty list to store all the nodes from the current level
             result.append([])
             for i in range(len(queue)): 
                 currentNode = queue.popleft()
+                # add the node's value to the initialize list 'result.append([])'
                 result[level].append(currentNode.val)
                 if currentNode.left:
+                    # adding node to queue will not affect the len(queue) in the for loop,
+                    # it will take effect at the next iteration of while loop 
                     queue.append(currentNode.left)
                 if currentNode.right:
-                    queue.append(currentNode.right)        
-                    
+                    queue.append(currentNode.right)             
                     
             level += 1
             

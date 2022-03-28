@@ -1,5 +1,3 @@
-完全没思路，看了答案后写出来的
-
 ```python
 # Definition for a binary tree node.
 # class TreeNode:
@@ -9,24 +7,53 @@
 #         self.right = right
 
 
-# O(n) Time | O(n) Space
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        # Method: recursion  
+        # O(m+n) Time 
+        # O(h) Space; h = height of the tree
+        #  h = O(n) when worse case(un-balanced tree)
+        #  h = O(log(n)) when best case(balanced tree)
+        if root == None:
+            return None 
         
-        
-        # Method:  use stack 
         result = []
-        stack = []
-        node = root
-        
-        while node != None or len(stack) != 0: # or -> while node and stack
-            while node:
-                stack.append(node)
-                node = node.left    
-            currNode = stack.pop()
-            result.append(currNode.val)
-            node = currNode.right 
+        def traversal(root):
+            if root == None:
+                return 
+            
+            traversal(root.left)
+            result.append(root.val)
+            traversal(root.right)
+        traversal(root)
         
         return result
+        
+
+
+        # Method: iterative - use stack
+        # O(n) Time | O(n) Space
+        result = []
+        stack = [] # do not add root 
+        
+        current = root
+        
+        while stack or current:
+            # keep iterate the node until find the left-most node
+            if current != None:
+                stack.append(current)
+                current = current.left 
+            # if current is None, which means arrives at left-most node
+            # pop value from stack, and 
+            # move the pointer to pop node's right node
+            else: 
+                current = stack.pop()
+                result.append(current.val)
+                
+                current = current.right
+                
+        
+        return result
+        
             
 ```    
